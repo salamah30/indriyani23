@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kopi Mantap - Coffee Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-in { animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .btn-animate:hover { transform: scale(1.05); }
+        .btn-animate:active { transform: scale(0.95); }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Header -->
+    <header class="bg-amber-900 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d13b23cf-279c-4819-aca3-27bf0c14020a.png" alt="Logo Kopi Mantap berupa cangkir kopi dengan uap panas" class="w-12 h-12 rounded-full border-2 border-amber-200">
+                    <h1 class="text-2xl font-bold">Kopi Mantap</h1>
+                </div>
+                <nav>
+                    <ul class="flex space-x-4">
+                        <li><button onclick="showSection('home')" class="px-3 py-2 bg-amber-700 rounded-lg btn-animate transition">Beranda</button></li>
+                        <li><button onclick="showSection('menu')" class="px-3 py-2 hover:bg-amber-700 rounded-lg btn-animate transition">Menu</button></li>
+                        <li><button onclick="showSection('order')" class="px-3 py-2 hover:bg-amber-700 rounded-lg btn-animate transition">Pesanan</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Beranda -->
+        <section id="home" class="fade-in">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/204c6a00-99db-45bb-a829-78c93bed8ccd.png" alt="Tampilan depan coffee shop dengan suasana nyaman dan pelanggan sedang menikmati kopi" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-amber-900 mb-4">Selamat Datang di Kopi Mantap</h2>
+                    <p class="text-gray-700 mb-4">Tempatnya kopi spesial dengan racikan istimewa. Nikmati berbagai varian kopi berkualitas tinggi dengan suasana yang nyaman.</p>
+                    <button onclick="showSection('menu')" class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg btn-animate transition">Lihat Menu</button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-amber-900 mb-2">Kopi Spesial</h3>
+                        <p class="text-gray-700">Kopi pilihan dengan rasa yang khas dan nikmat.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-amber-900 mb-2">Minuman Non-Kopi</h3>
+                        <p class="text-gray-700">Berbagai minuman segar untuk semua kalangan.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-amber-900 mb-2">Snack</h3>
+                        <p class="text-gray-700">Camilan lezat untuk menemani kopi Anda.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu -->
+        <section id="menu" class="hidden fade-in">
+            <h2 class="text-2xl font-bold text-amber-900 mb-6">Menu Kami</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Kopi -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/61da57d0-c26a-4b91-a322-626c82179c0d.png" alt="Secangkir kopi espresso dengan crema tebal di atas meja kayu" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-amber-900">Espresso</h3>
+                        <p class="text-gray-700 mb-2">Kopi murni dengan rasa kuat dan aroma khas.</p>
+                        <p class="font-bold">Rp 25.000</p>
+                        <button onclick="addToCart('Espresso', 25000)" class="mt-2 bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded-lg btn-animate transition">+ Keranjang</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/97e57838-1c5c-47cf-86c6-597360898ea4.png" alt="Cappuccino dengan latte art berbentuk daun di cangkir putih" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-amber-900">Cappuccino</h3>
+                        <p class="text-gray-700 mb-2">Espresso dengan susu steamed dan busa susu.</p>
+                        <p class="font-bold">Rp 30.000</p>
+                        <button onclick="addToCart('Cappuccino', 30000)" class="mt-2 bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded-lg btn-animate transition">+ Keranjang</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fb2dd6a9-268a-43b7-86e6-2d8452f60ff8.png" alt="Latte dengan lapisan seni latte yang rumit" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-amber-900">Latte</h3>
+                        <p class="text-gray-700 mb-2">Espresso dengan lebih banyak susu steamed.</p>
+                        <p class="font-bold">Rp 28.000</p>
+                        <button onclick="addToCart('Latte', 28000)" class="mt-2 bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded-lg btn-animate transition">+ Keranjang</button>
+                    </div>
+                </div>
+                
+                <!-- Non-Kopi -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/08a7a568-f0c8-4596-932c-996146fbe84e.png" alt="Teh tarik dengan buih khas di gelas tinggi" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-amber-900">Teh Tarik</h3>
+                        <p class="text-gray-700 mb-2">Teh susu khas dengan rasa manis.</p>
+                        <p class="font-bold">Rp 20.000</p>
+                        <button onclick="addToCart('Teh Tarik', 20000)" class="mt-2 bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded-lg btn-animate transition">+ Keranjang</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c4eda85b-93c7-488c-b40c-d1d9d8975db8.png" alt="Jus jeruk segar dalam gelas tinggi dengan hiasan irisan jeruk" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-amber-900">Jus Jeruk</h3>
+                        <p class="text-gray-700 mb-2">Jeruk segar yang diperas langsung.</p>
+                        <p class="font-bold">Rp 18.000</p>
+                        <button onclick="addToCart('Jus Jeruk', 18000)" class="mt-2 bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded-lg btn-animate transition">+ Keranjang</button>
+                    </div>
+                </div>
+                
+                <!-- Snack -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4007c4a9-d27f-4fc8-80f2-71e2acda799b.png" alt="Roti panggang dengan selai di atas piring kayu" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-amber-900">Roti Panggang</h3>
+                        <p class="text-gray-700 mb-2">Roti gandum panggang dengan selai pilihan.</p>
+                        <p class="font-bold">Rp 15.000</p>
+                        <button onclick="addToCart('Roti Panggang', 15000)" class="mt-2 bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded-lg btn-animate transition">+ Keranjang</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pesanan -->
+        <section id="order" class="hidden fade-in">
+            <h2 class="text-2xl font-bold text-amber-900 mb-6">Pesanan Anda</h2>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <div id="cart-items" class="mb-4">
+                    <!-- Items akan ditampilkan di sini -->
+                    <p class="text-gray-500">Keranjang masih kosong</p>
+                </div>
+                
+                <div class="border-t pt-4">
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold">Subtotal:</span>
+                        <span id="subtotal">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold">PPN (10%):</span>
+                        <span id="tax">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between text-xl font-bold">
+                        <span>Total:</span>
+                        <span id="total">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold text-amber-900 mb-4">Pembayaran</h3>
+                
+                <div class="mb-4">
+                    <label class="block mb-2 font-semibold">Metode Pembayaran:</label>
+                    <div class="flex space-x-2 mb-4">
+                        <button id="btn-cash" onclick="selectPaymentMethod('cash')" class="px-4 py-2 bg-amber-600 text-white rounded-lg border border-amber-700 btn-animate transition">Tunai</button>
+                        <button id="btn-wallet" onclick="selectPaymentMethod('wallet')" class="px-4 py-2 bg-gray-200 rounded-lg border border-gray-300 btn-animate transition">Dompet Digital</button>
+                    </div>
+                    <label for="amount-paid" class="block mb-2 font-semibold">Jumlah Dibayar:</label>
+                    <input type="number" id="amount-paid" placeholder="Masukkan jumlah uang" class="w-full p-2 border rounded-lg">
+                    <div id="wallet-balance" class="hidden mt-2">
+                        <span class="text-sm">Saldo Dompet: Rp </span>
+                        <span id="wallet-amount">50.000</span>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <button onclick="processPayment()" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg btn-animate transition">
+                        Bayar
+                    </button>
+                    <button onclick="clearCart()" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg btn-animate transition">
+                        Batal
+                    </button>
+                </div>
+                
+                <div id="payment-result" class="mt-4 p-3 rounded-lg hidden border border-green-500 bg-green-50">
+                    <div id="success-notification" class="flex items-center text-green-700 mb-3 font-semibold">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Pembayaran Berhasil!
+                    </div>
+                    <h4 class="font-bold mb-2">Struk Pembayaran:</h4>
+                    <div id="receipt-content" class="mb-2"></div>
+                    <div class="flex justify-between font-bold">
+                        <span>Kembalian:</span>
+                        <span id="change-amount">Rp 0</span>
+                    </div>
+                    <button onclick="printReceipt()" class="mt-3 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-lg btn-animate transition">
+                        Cetak Struk
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-amber-900 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2023 Kopi Mantap. All rights reserved.</p>
+            <p class="mt-2">Jl. Kopi Mantap No. 123, Jakarta</p>
+            <p class="mt-2">Buka setiap hari 08:00 - 22:00</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data keranjang
+        let cart = [];
+        let totalAmount = 0;
+        
+        // Tampilkan section yang dipilih
+        function showSection(sectionId) {
+            document.getElementById('home').classList.add('hidden');
+            document.getElementById('menu').classList.add('hidden');
+            document.getElementById('order').classList.add('hidden');
+            
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Perbarui keranjang jika menuju halaman order
+            if (sectionId === 'order') {
+                updateCartDisplay();
+            }
+        }
+        
+        // Tambahkan item ke keranjang
+        function addToCart(name, price) {
+            // Cek apakah item sudah ada di keranjang
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+                existingItem.total = existingItem.quantity * existingItem.price;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    quantity: 1,
+                    total: price
+                });
+            }
+            
+            updateCartDisplay();
+            showSection('order');
+            
+            // Animasi feedback
+            const btn = event.target;
+            btn.textContent = '✓ Ditambahkan';
+            btn.classList.add('bg-green-500');
+            setTimeout(() => {
+                btn.textContent = '+ Keranjang';
+                btn.classList.remove('bg-green-500');
+                btn.classList.add('bg-amber-600');
+            }, 1000);
+        }
+        
+        // Perbarui tampilan keranjang
+        function updateCartDisplay() {
+            const cartItemsElement = document.getElementById('cart-items');
+            
+            if (cart.length === 0) {
+                cartItemsElement.innerHTML = '<p class="text-gray-500">Keranjang masih kosong</p>';
+                document.getElementById('subtotal').textContent = 'Rp 0';
+                document.getElementById('tax').textContent = 'Rp 0';
+                document.getElementById('total').textContent = 'Rp 0';
+                totalAmount = 0;
+                return;
+            }
+            
+            let itemsHTML = '';
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                itemsHTML += `
+                    <div class="flex justify-between items-center mb-2 border-b pb-2">
+                        <div>
+                            <span class="font-semibold">${item.name}</span>
+                            <div class="flex items-center mt-1">
+                                <button onclick="changeQuantity('${item.name}', -1)" class="bg-gray-200 px-2 rounded">-</button>
+                                <span class="mx-2">${item.quantity}</span>
+                                <button onclick="changeQuantity('${item.name}', 1)" class="bg-gray-200 px-2 rounded">+</button>
+                                <span class="ml-4">@Rp ${item.price.toLocaleString()}</span>
+                            </div>
+                        </div>
+                        <div class="font-semibold">Rp ${item.total.toLocaleString()}</div>
+                    </div>
+                `;
+                subtotal += item.total;
+            });
+            
+            const tax = subtotal * 0.1;
+            totalAmount = subtotal + tax;
+            
+            cartItemsElement.innerHTML = itemsHTML;
+            document.getElementById('subtotal').textContent = `Rp ${subtotal.toLocaleString()}`;
+            document.getElementById('tax').textContent = `Rp ${tax.toLocaleString()}`;
+            document.getElementById('total').textContent = `Rp ${totalAmount.toLocaleString()}`;
+        }
+        
+        // Ubah jumlah item
+        function changeQuantity(name, change) {
+            const item = cart.find(item => item.name === name);
+            
+            if (!item) return;
+            
+            item.quantity += change;
+            
+            // Hapus jika jumlah kurang dari 1
+            if (item.quantity < 1) {
+                cart = cart.filter(item => item.name !== name);
+            } else {
+                item.total = item.quantity * item.price;
+            }
+            
+            updateCartDisplay();
+        }
+        
+        // Variabel untuk metode pembayaran
+        let paymentMethod = 'cash';
+        let walletBalance = 50000;
+        
+        // Pilih metode pembayaran
+        function selectPaymentMethod(method) {
+            paymentMethod = method;
+            if (method === 'cash') {
+                document.getElementById('btn-cash').classList.add('bg-amber-600', 'text-white');
+                document.getElementById('btn-cash').classList.remove('bg-gray-200');
+                document.getElementById('btn-wallet').classList.add('bg-gray-200');
+                document.getElementById('btn-wallet').classList.remove('bg-amber-600', 'text-white');
+                document.getElementById('wallet-balance').classList.add('hidden');
+            } else {
+                document.getElementById('btn-wallet').classList.add('bg-amber-600', 'text-white');
+                document.getElementById('btn-wallet').classList.remove('bg-gray-200');
+                document.getElementById('btn-cash').classList.add('bg-gray-200');
+                document.getElementById('btn-cash').classList.remove('bg-amber-600', 'text-white');
+                document.getElementById('wallet-balance').classList.remove('hidden');
+                document.getElementById('amount-paid').value = Math.min(walletBalance, totalAmount);
+            }
+        }
+        
+        // Proses pembayaran
+        function processPayment() {
+            if (cart.length === 0) {
+                alert('Keranjang masih kosong!');
+                return;
+            }
+            
+            let amountPaid = parseInt(document.getElementById('amount-paid').value);
+            
+            if (paymentMethod === 'wallet') {
+                if (walletBalance < totalAmount) {
+                    alert('Saldo dompet tidak mencukupi!');
+                    return;
+                }
+                amountPaid = totalAmount;
+                walletBalance -= totalAmount;
+                document.getElementById('wallet-amount').textContent = walletBalance.toLocaleString();
+                document.getElementById('receipt-wallet').classList.remove('hidden');
+                document.getElementById('wallet-receipt-amount').textContent = `Rp ${walletBalance.toLocaleString()}`;
+            } else {
+                if (isNaN(amountPaid) || amountPaid <= 0) {
+                    alert('Masukkan jumlah pembayaran yang valid!');
+                    return;
+                }
+                
+                if (amountPaid < totalAmount) {
+                    alert('Jumlah pembayaran kurang!');
+                    return;
+                }
+            }
+            
+            const change = paymentMethod === 'cash' ? amountPaid - totalAmount : 0;
+            
+            // Generate receipt content
+            let receiptHTML = `
+                <div class="border-b pb-2 mb-2">
+                    <h5 class="font-bold text-center">KOPI MANTAP</h5>
+                    <p class="text-center text-sm">${new Date().toLocaleString()}</p>
+                </div>
+            `;
+            
+            cart.forEach(item => {
+                receiptHTML += `
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>${item.name} (${item.quantity}x)</span>
+                        <span>Rp ${item.total.toLocaleString()}</span>
+                    </div>
+                `;
+            });
+            
+            receiptHTML += `
+                <div class="border-t pt-2 mt-2">
+                    <div class="flex justify-between">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">Rp ${(totalAmount / 1.1).toLocaleString()}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>PPN (10%):</span>
+                        <span id="tax">Rp ${(totalAmount / 1.1 * 0.1).toLocaleString()}</span>
+                    </div>
+                    <div class="flex justify-between font-bold">
+                        <span>Total:</span>
+                        <span id="total">Rp ${totalAmount.toLocaleString()}</span>
+                    </div>
+                    <div class="flex justify-between mt-2">
+                        <span>Dibayar:</span>
+                        <span>Rp ${amountPaid.toLocaleString()}</span>
+                    </div>
+                    <div id="receipt-wallet" class="hidden flex justify-between mt-1 text-sm">
+                        <span>Saldo Dompet:</span>
+                        <span id="wallet-receipt-amount">Rp 200.000</span>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('receipt-content').innerHTML = receiptHTML;
+            document.getElementById('change-amount').textContent = `Rp ${change.toLocaleString()}`;
+            document.getElementById('payment-result').classList.remove('hidden');
+            
+            // Show success animation
+            const successDetails = paymentMethod === 'wallet' 
+                ? 'Pembayaran berhasil melalui Dompet Digital' 
+                : 'Pembayaran tunai berhasil';
+            
+            // Optional: Add sound effect
+            const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-cash-register-purchase-1928.mp3');
+            audio.play();
+        }
+        
+       
+        function printReceipt() {
+            // Show print confirmation
+            document.getElementById('payment-result').classList.add('bg-green-100');
+            
+            // Simulate printing
+            setTimeout(() => {
+                alert('Order #' + Math.floor(Math.random() * 1000) + ' berhasil dicetak!');
+                clearCart();
+            }, 500);
+            
+            // Optional: Redirect or auto-close after delay
+            setTimeout(() => {
+                showSection('home');
+            }, 3000);
+        }
+        
+        // Kosongkan keranjang
+        function clearCart() {
+            cart = [];
+            totalAmount = 0;
+            document.getElementById('amount-paid').value = '';
+            document.getElementById('payment-result').classList.add('hidden');
+            updateCartDisplay();
+        }
+        
+        // Tampilkan beranda saat pertama kali load
+        showSection('home');
+    </script>
+</body>
+</html>
